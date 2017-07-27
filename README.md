@@ -1,1 +1,1 @@
-# daydayup
+# Java little blog system
