@@ -20,7 +20,6 @@ import com.mysql.jdbc.StringUtils;
 @RequestMapping( "/phone" )
 public class UserRestController extends PhoneBaseController{
 	
-	
 	@Autowired
 	RedisTemplate redisTemplate;
 	

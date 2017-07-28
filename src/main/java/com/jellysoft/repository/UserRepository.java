@@ -23,7 +23,7 @@ public interface UserRepository extends CrudRepository<User ,Integer>{
 	@Query("UPDATE User u SET u.last_login=?2 WHERE u.uid=?1")
 	@Modifying
 	@Transactional
-	void updateLastLoginTime( int uid , Date lastLoginTime);
+	void updateLastLoginTime( int uid , Date lastLoginTime); 
 	
 	
 }
