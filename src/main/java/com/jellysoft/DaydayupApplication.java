@@ -11,7 +11,6 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 public class DaydayupApplication {
 
 	public static void main(String[] args) {
-		
 		SpringApplication.run(DaydayupApplication.class, args);
 	}
 }

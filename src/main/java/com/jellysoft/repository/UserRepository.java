@@ -6,14 +6,13 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
-import com.jellysoft.model.SiteInfo;
+import com.jellysoft.model.User;
 
 @Repository
-@Table(name="site_info")
-@Qualifier("siteInfoRepository")
-public interface SiteInfoRepository extends CrudRepository<SiteInfo ,Integer> {
+@Table(name="user")
+@Qualifier("userRepository")
+public interface UserRepository extends CrudRepository<User ,Integer>{
 	
-	//获取最后一次网站设置信息
-	SiteInfo findFirstByOrderByInfoid();
+	User findByPhoneAndPwd( String phone , String pwd );
 	
 }
