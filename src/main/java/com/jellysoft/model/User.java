@@ -16,6 +16,7 @@ import com.jellysoft.utils.TextUtils;
 public class User {
 	
 	public static final String TOKEN_STATIC = "$$!!@##!@#!@###IUjaasccc";
+	public static final String PREFIX = "token:";
 	
 	@Id
 	@GeneratedValue(strategy= GenerationType.AUTO)
@@ -48,7 +49,7 @@ public class User {
 	 */
 	public String getTokenKey(){
 		String md5 = TextUtils.getMD5( phone + "_" + uid + "_");
-		return md5;
+		return PREFIX + md5;
 		
 	}
 	
@@ -60,7 +61,7 @@ public class User {
 	 */
 	public static String getTokenKey( String phone , String uid  ){
 		String md5 = TextUtils.getMD5( phone + "_" + uid + "_");
-		return md5;
+		return PREFIX + md5;
 	}
 	
 	/**

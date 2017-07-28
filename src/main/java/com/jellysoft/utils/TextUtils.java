@@ -27,7 +27,7 @@ public class TextUtils {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return md5str;
+		return md5str.toLowerCase();
 	}
 
 	private static String bytesToHex(byte[] bytes) {

@@ -1,6 +1,7 @@
 package com.jellysoft.controller;
 
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -54,11 +55,14 @@ public class UserRestController extends PhoneBaseController{
 			return backData( BackType.LOGIN_LOCKED );
 		}
 		
-		//TODO这个地方处理用户Token 保存redis然后返回给用户 key应该是用户的phone以及uid
-	
+		//更新最后一次登录时间
+		userRepository.updateLastLoginTime( user.uid , new Date() );
+		
+		//处理用户Token 保存redis然后返回给用户 key应该是用户的phone以及uid
 		String tokenKey = user.getTokenKey();
 		String token = user.createToken();
-		
+				
+		//TODO此处需要获取用户的信息 专门调一个接口，当用户在首页的时候 去获取用户信息
 		
 		//保存到redis
 		ValueOperations<String,String> redis = redisTemplate.opsForValue();
