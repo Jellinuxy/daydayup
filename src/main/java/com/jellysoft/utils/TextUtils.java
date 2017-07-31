@@ -2,6 +2,8 @@ package com.jellysoft.utils;
 
 import java.security.MessageDigest;
 
+import com.mysql.jdbc.StringUtils;
+
 public class TextUtils {
 
 	/**
@@ -29,6 +31,24 @@ public class TextUtils {
 		}
 		return md5str.toLowerCase();
 	}
+	
+	
+	/**
+	 * 判断是否有空数据
+	 * @param params
+	 * @return
+	 */
+	public static boolean isNullOrEmpty(String ...params){
+		
+		for( int i = 0 ; i < params.length ; i++ ){
+			if( StringUtils.isNullOrEmpty( params[i] ) ){
+				return true;
+			}
+		}
+		
+		return false;
+	}
+	
 
 	private static String bytesToHex(byte[] bytes) {
 		StringBuffer md5str = new StringBuffer();

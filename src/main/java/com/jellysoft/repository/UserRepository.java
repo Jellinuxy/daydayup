@@ -2,6 +2,7 @@ package com.jellysoft.repository;
 
 import java.util.Date;
 
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -20,10 +21,15 @@ public interface UserRepository extends CrudRepository<User ,Integer>{
 	
 	User findByPhoneAndPwd( String phone , String pwd );
 	
+	User findByPhone( String phone );
+	
 	@Query("UPDATE User u SET u.last_login=?2 WHERE u.uid=?1")
 	@Modifying
 	@Transactional
 	void updateLastLoginTime( int uid , Date lastLoginTime); 
+	
+	
+	
 	
 	
 }

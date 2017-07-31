@@ -3,6 +3,7 @@ package com.jellysoft.model;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
 @Entity
@@ -16,6 +17,9 @@ public class UserInfo {
 	public String real_name;
 	
 	@Column( length=30 )
+	public String nickname;
+	
+	@Column( length=30 )
 	public String id_code;
 	
 	public int sex;
@@ -25,5 +29,7 @@ public class UserInfo {
 	
 	@Column( length=500 )
 	public String description;
+	
+
 	
 }

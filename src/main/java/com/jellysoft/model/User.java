@@ -2,11 +2,16 @@ package com.jellysoft.model;
 
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.OneToOne;
+import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
 import com.jellysoft.utils.TextUtils;
@@ -33,6 +38,11 @@ public class User {
 	public Date last_login;
 	
 	public int 	is_locked;
+	
+	
+	@OneToOne //JPA注释： 一对一 关系
+    @JoinColumn(name="uid" )// 在pepole中，添加一个外键 "uid"
+	public UserInfo userInfo;
 	
 	/**
 	 * 返回用户是否被锁定
