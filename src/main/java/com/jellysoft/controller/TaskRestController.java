@@ -27,6 +27,10 @@ public class TaskRestController extends PhoneBaseController {
 
 	private int radiusValue = 6;
 
+	//每次拿多少条数据
+	private static final int TASK_SELECT_COUNT = 10;
+	
+	
 	@Autowired
 	TaskRepository taskRepository;
 
@@ -42,13 +46,15 @@ public class TaskRestController extends PhoneBaseController {
 	 * @return
 	 */
 	@RequestMapping(value = "/push", method = RequestMethod.GET)
-	public String pushTask(String taskname, String taskdesc, String pics , int cate, double lat, double lng) {
+	public String pushTask(String taskname, String taskdesc, String pics, int cate, double lat, double lng) {
 
 		// // 验证用户
-		// if (!checkToken()) {
-		// // 用户token错误
-		// return backData(BackType.TOKEN_ERROR);
-		// }
+		if (!checkToken()) {
+			// 用户token错误
+			return backData(BackType.TOKEN_ERROR);
+		}
+		
+		//任务名称，以及任务描述不能为空
 		if (TextUtils.isNullOrEmpty(taskname, taskdesc)) {
 			return backData(BackType.PUSH_TASK_EMPTY);
 		}
@@ -64,7 +70,7 @@ public class TaskRestController extends PhoneBaseController {
 		task.task_name = taskname;
 		task.lat = lat;
 		task.lng = lng;
-		task.pics = pics;//多张以,号隔开
+		task.pics = pics;// 多张以,号隔开
 		task.locked = 0;
 		// 保存任务
 		taskRepository.save(task);
@@ -74,9 +80,11 @@ public class TaskRestController extends PhoneBaseController {
 
 	/**
 	 * 获取任务
+	 * 
 	 * @param lat
 	 * @param lng
-	 * @param isnearly 是否是附近任务
+	 * @param isnearly
+	 *            是否是附近任务
 	 * @param page
 	 * @return
 	 */
@@ -84,9 +92,9 @@ public class TaskRestController extends PhoneBaseController {
 	public String pullTask(double lat, double lng, int isnearly, int page) {
 
 		List<Task> taskList = null;
-		PageRequest pageRequest = new PageRequest(page, 10);
+		PageRequest pageRequest = new PageRequest(page, TASK_SELECT_COUNT);
 		if (isnearly == 1) {
-			//查询附近的
+			// 查询附近的
 			GeoHash geoHash = GeoHash.withCharacterPrecision(lat, lng, 6);
 			String currentBase32 = geoHash.toBase32();
 			GeoHash[] adjacent = geoHash.getAdjacent();
@@ -95,12 +103,12 @@ public class TaskRestController extends PhoneBaseController {
 			for (int i = 0; i < adjacent.length; i++) {
 				base32s.add(adjacent[i].toBase32());
 			}
-			
+
 			/* 获取数据每次10个 */
 			taskList = taskRepository.findByLockedAndTaskstatusAndGeocodeIn(Task.TASK_NOT_LOCK, Task.TASK_NO_DO,
 					base32s, pageRequest);
 		} else {
-			//查询所有的
+			// 查询所有的
 			taskList = taskRepository.findByLockedAndTaskstatus(Task.TASK_NOT_LOCK, Task.TASK_NO_DO, pageRequest);
 		}
 

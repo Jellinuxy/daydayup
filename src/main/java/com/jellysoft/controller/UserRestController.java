@@ -80,6 +80,7 @@ public class UserRestController extends PhoneBaseController{
 	/**
 	 * 注册接口
 	 * @param phone 电话号码
+	 * @param vcode 验证码
 	 * @param pwd   密码，已经MD5过
 	 * @param sex   性别  1 男         2 女
 	 * @param header_url  头像url
@@ -87,10 +88,10 @@ public class UserRestController extends PhoneBaseController{
 	 * @return
 	 */
 	@RequestMapping( value = "/register" , method = RequestMethod.GET )
-	public String register( String phone , String pwd , int sex , String header_url , String description , String nickname ){
+	public String register( String phone , String vcode , String pwd , int sex , String header_url , String description , String nickname ){
 		
 		//1.判空 
-		if( TextUtils.isNullOrEmpty( phone , pwd , header_url , description , nickname ) ){
+		if( TextUtils.isNullOrEmpty( phone , vcode , pwd , header_url , description , nickname ) ){
 			return backData( BackType.REGISTER_EMPTY );
 		}
 		
