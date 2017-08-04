@@ -53,7 +53,7 @@ public class TaskRestController extends PhoneBaseController {
 			// 用户token错误
 			return backData(BackType.TOKEN_ERROR);
 		}
-		
+		1
 		//任务名称，以及任务描述不能为空
 		if (TextUtils.isNullOrEmpty(taskname, taskdesc)) {
 			return backData(BackType.PUSH_TASK_EMPTY);
