@@ -5,7 +5,9 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.HashOperations;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.core.SetOperations;
 import org.springframework.data.redis.core.ValueOperations;
 
 import com.alibaba.fastjson.JSONObject;
@@ -77,6 +79,7 @@ public class PhoneBaseController {
 		// 获取token
 		ValueOperations<String, String> redis = redisTemplate.opsForValue();
 		String serverToken = redis.get(key);
+		
 
 		if (!token.equals(serverToken)) {
 			return false;

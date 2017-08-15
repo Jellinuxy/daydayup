@@ -17,7 +17,7 @@ public class IndexController {
 	
 	@RequestMapping("/")
 	public String index( Map<String,Object> params ){
-		a
+		
 		SiteInfo siteInfo = siteInfoRepository.findFirstByOrderByInfoid();
 		params.put( "siteinfo" , siteInfo );
 		return "index";
