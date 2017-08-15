@@ -2,6 +2,7 @@ package com.jellysoft.controller;
 
 
 import java.util.Date;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -17,7 +18,6 @@ import com.jellysoft.model.UserInfo;
 import com.jellysoft.repository.UserInfoRepository;
 import com.jellysoft.repository.UserRepository;
 import com.jellysoft.utils.TextUtils;
-import com.mysql.jdbc.StringUtils;
 
 /**
  * 手机用户相关模块Controller
