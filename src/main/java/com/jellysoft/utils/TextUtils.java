@@ -2,7 +2,6 @@ package com.jellysoft.utils;
 
 import java.security.MessageDigest;
 
-import com.mysql.jdbc.StringUtils;
 
 public class TextUtils {
 
