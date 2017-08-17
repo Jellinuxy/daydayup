@@ -12,5 +12,5 @@ public class DaydayupApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(DaydayupApplication.class, args);
-	}
+	} aa
 }
